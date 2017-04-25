@@ -1,0 +1,155 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/andrew/node-xbox-controller"
+
+    >xbox-controller (v0.7.0)</a>
+</h1>
+<h4>Xbox controller for node</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.xbox-controller">module xbox-controller</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">xbox-controller.</span>within</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.xbox-controller.within">module xbox-controller.within</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.xbox-controller.within.within">
+            function <span class="apidocSignatureSpan">xbox-controller.</span>within
+            <span class="apidocSignatureSpan">(eventName, range, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.xbox-controller" id="apidoc.module.xbox-controller">module xbox-controller</a></h1>
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.xbox-controller.within" id="apidoc.module.xbox-controller.within">module xbox-controller.within</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.xbox-controller.within.within" id="apidoc.element.xbox-controller.within.within">
+        function <span class="apidocSignatureSpan">xbox-controller.</span>within
+        <span class="apidocSignatureSpan">(eventName, range, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">within = function (eventName, range, callback) {
+  var upper;
+
+  if (typeof range === &#x22;number&#x22;) {
+    upper = range;
+    range = [0, upper];
+  }
+
+  if (!Array.isArray(range)) {
+    this.emit(&#x22;error&#x22;, {
+      message: &#x22;range must be an array&#x22;
+    });
+    return;
+  }
+
+  this.on(eventName , function(value){
+    if (value &#x3e;= range[0] &#x26;&#x26; value &#x3c;= range[1]) {
+      callback.call(this, null, value);
+    }
+  }.bind(this));
+
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Where the strengths are between 0 and 255.
+
+## Within function
+
+Listen for when a trigger or stick&#x27;s position is within a particular range:
+
+```javascript
+xbox.<span class="apidocCodeKeywordSpan">within</span>(&#x27;righttrigger&#x27;, [50,100], function(err, data){
+	console.log(&#x27;rightttrigger within 50 and 100&#x27;, err, data);
+});
+```
+
+## Multiple Devices
+
+On startup, if a device is in use, it will be skipped and the next available device will be used.  The serial number and
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
